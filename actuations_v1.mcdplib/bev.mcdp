@@ -1,0 +1,21 @@
+mcdp {
+    provides range [m]   
+  
+    my_model = instance `energy_model
+    
+    range provided by my_model ≽ provided range
+    my_battery = instance `battery
+    α = 1 J/m
+     
+    energy required by my_model ≼ energy provided by my_battery
+    requires cost [CHF]
+    base_cost = 1000 CHF
+    required cost ≽ base_cost  + cost required by my_battery
+    
+    base_weight = 200 kg
+    
+    total_weight = base_weight + weight required by my_battery
+    
+    weight provided by my_model ≽ total_weight
+    #    required energy ≽ α · (provided range)
+} 

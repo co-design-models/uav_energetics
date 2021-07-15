@@ -1,0 +1,58 @@
+mcdp {
+  provides travel_distance [km]
+  provides num_missions [dimensionless]
+  provides carry_payload [g]
+
+  requires total_cost_ownership [$]
+
+  strategy = instance mcdp {
+    provides distance [km]
+    requires endurance [s]
+    requires velocity [m/s]
+
+    provided distance <= (required endurance) * (required velocity)
+  }
+
+  ae = instance `ActuationEnergetics
+
+  endurance provided by ae >= endurance required by strategy
+  velocity provided by ae  >= velocity required by strategy
+  num_missions provided by ae  >= provided num_missions
+  extra_payload provided by ae >= provided carry_payload
+  distance provided by strategy >= provided travel_distance
+
+  computer = instance `Computer
+
+  perception = instance template mcdp {
+    provides velocity [m/s]
+    requires computation [flops]
+    requires camera_framerate [Hz]
+    requires camera_resolution [pixels/deg]
+    requires camera_fov [deg]
+  }
+  computation provided by computer >= computation required by perception
+
+
+  sensor = instance template mcdp {
+    provides framerate [Hz]
+    provides resolution [pixels/deg]
+    provides fov [deg]
+    requires power [W]
+  }
+
+  resolution provided by sensor >= camera_resolution required by perception
+  framerate  provided by sensor>= camera_framerate required by perception
+  fov  provided by sensor>= camera_fov required by perception
+
+  velocity provided by perception >= velocity required by strategy
+  extra_power provided by ae >= power required by computer + power required by sensor
+
+  # We can take into account the shipping cost
+  shipping = instance  `Shipping
+
+  total_mass = total_mass required by ae
+
+  ships provided by shipping >= total_mass
+
+  required total_cost_ownership >= postage required by shipping + total_cost required by ae
+}

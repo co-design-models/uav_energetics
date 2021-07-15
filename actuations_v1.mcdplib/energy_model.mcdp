@@ -1,0 +1,12 @@
+mcdp {
+    provides range [m]
+    provides weight [kg]
+
+    requires energy [J]
+    
+    a = 1 m/s²
+    b = 1 J/m*kg
+    # b = 1 J/(m*kg)
+    #  J/(kg*m)     
+    required energy ≽ a · (provided range) · (provided weight)
+}

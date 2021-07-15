@@ -1,0 +1,4 @@
+choose (
+   LiPo:  `Battery_LiPO,
+   LMO:   `Battery_LMO
+)

@@ -1,0 +1,18 @@
+{ "class": "go.GraphLinksModel",
+  "linkKeyProperty": "key",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"key":"_original", "name":"_original", "leftArray":[ {"portId":"_fun_lift", "port_label":"lift [N]", "unit":"R[N]"} ], "rightArray":[ {"portId":"_res_power", "port_label":"power [W]", "unit":"R[W]"},{"portId":"_res_actuator_mass", "port_label":"actuator_mass [g]", "unit":"R[g]"},{"portId":"_res_cost", "port_label":"cost [$]", "unit":"R[USD]"} ], "location":{"class":"go.Point", "x":512, "y":184}},
+{"key":"_approx", "name":"", "leftArray":[ {"portId":"_fun_power", "port_label":"power [W]", "unit":"R[W]"} ], "rightArray":[ {"portId":"_res_power", "port_label":"power [W]", "unit":"R[W]"} ], "category":"", "location":{"class":"go.Point", "x":365.6185506233079, "y":284}},
+{"key":"_fun_lift", "name":"_fun_lift", "leftArray":[ {"portId":"_fun_lift", "port_label":"lift [N]", "unit":"R[N]"} ], "rightArray":[ {"portId":"_res_lift", "port_label":"lift [N]", "unit":"R[N]"} ], "category":"f_template", "location":{"class":"go.Point", "x":387.1667887466156, "y":0}},
+{"key":"_res_power", "name":"_res_power", "leftArray":[ {"portId":"_fun_power", "port_label":"power [W]", "unit":"R[W]"} ], "rightArray":[ {"portId":"_res_power", "port_label":"power [W]", "unit":"R[W]"} ], "category":"r_template", "location":{"class":"go.Point", "x":0, "y":95.93905843580795}},
+{"key":"_res_actuator_mass", "name":"_res_actuator_mass", "leftArray":[ {"portId":"_fun_actuator_mass", "port_label":"actuator_mass [g]", "unit":"R[g]"} ], "rightArray":[ {"portId":"_res_actuator_mass", "port_label":"actuator_mass [g]", "unit":"R[g]"} ], "category":"r_template", "location":{"class":"go.Point", "x":84.03554281080791, "y":95.93905843580795}},
+{"key":"_res_cost", "name":"_res_cost", "leftArray":[ {"portId":"_fun_cost", "port_label":"cost [$]", "unit":"R[USD]"} ], "rightArray":[ {"portId":"_res_cost", "port_label":"cost [$]", "unit":"R[USD]"} ], "category":"r_template", "location":{"class":"go.Point", "x":212.88553874661585, "y":95.93905843580795}}
+ ],
+  "linkDataArray": [ 
+{"from":"_original", "to":"_res_cost", "key":"_original_cost__res_cost_cost", "fromPort":"_res_cost", "category":"r_link", "points":[682.147165936654,249.13871867102898,692.147165936654,249.13871867102898,692.147165936654,111.93905843580795,485.51635234163496,111.93905843580795,278.8855387466159,111.93905843580795,268.8855387466159,111.93905843580795]},
+{"from":"_original", "to":"_res_actuator_mass", "key":"_original_actuator_mass__res_actuator_mass_actuator_mass", "fromPort":"_res_actuator_mass", "category":"r_link", "points":[712.857126874154,235.060886639779,722.857126874154,235.060886639779,724,235.060886639779,724,172,204,172,204,111.93905843580795,202.88553874661585,111.93905843580795,192.88553874661585,111.93905843580795]},
+{"from":"_approx", "to":"_res_power", "key":"_approx_power__res_power_power", "fromPort":"_res_power", "category":"r_link", "points":[504.4053649974619,320.9830546085289,514.4053649974619,320.9830546085289,516,320.9830546085289,516,276,76,276,76,111.93905843580795,74.03554281080795,111.93905843580795,64.03554281080795,111.93905843580795]},
+{"from":"_fun_lift", "to":"_original", "fromPort":"_res_lift", "toPort":"_fun_lift", "key":-4, "points":[431.77860515286585,15.999999999999998,441.77860515286585,15.999999999999998,444,15.999999999999998,444,20,452,20,452,235.060886639779,505.761423749154,235.060886639779,515.761423749154,235.060886639779]}
+ ]}

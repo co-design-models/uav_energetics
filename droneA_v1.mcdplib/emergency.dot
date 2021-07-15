@@ -1,0 +1,30 @@
+digraph G { 
+
+                graph [fontname = "STIX Two Math"];
+                 node [fontname = "STIX Two Math"];
+                 edge [fontname = "STIX Two Math"];
+                rankdir=LR;    nodesep=0;    esep=0;
+   subgraph cluster1 {
+   fontsize="14";
+   width="0.35000000000000003";
+   height="0.35000000000000003";
+   penwidth="1.2249999999999999";
+   shape="box";
+   style="rounded";
+   label="";
+      node4 [fontsize="14",width="0.35000000000000003",height="0.525",penwidth="1.2249999999999999",shape="plaintext",image="/var/folders/x0/7hg7xs891yn06qn86w4kprs40000gn/T/mcdp_tmp_dir-andrea/resized/150/tmpyvv4pe4w.png",imagescale="true",fixedsize="true",label=""];
+   
+      node3 [fontsize="14",width="0.35000000000000003",height="0.35000000000000003",penwidth="1.2249999999999999",shape="box",style="rounded",label="× 3.00000 W/N²"];
+   
+      node2 [fontsize="14",width="0.35000000000000003",height="0.35000000000000003",penwidth="1.2249999999999999",shape="box",style="rounded",label="^ 2"];
+   
+   }
+   node5 [fontsize="14",width="0.35000000000000003",height="0.35000000000000003",penwidth="1.2249999999999999",shape="none",label="lift [N]",fontcolor="darkgreen"];
+   
+   node6 [fontsize="14",width="0.35000000000000003",height="0.35000000000000003",penwidth="1.2249999999999999",shape="none",label="power [W]",fontcolor="#861109"];
+   
+   node4->node3 [fontsize="14",penwidth="1.75",arrowsize="0.525",label="[N²]",weight="0",color="darkgreen",fontcolor="darkgreen",arrowhead="dot",arrowtail="none",dir="both"];
+   node3->node6 [fontsize="14",penwidth="1.75",arrowsize="0.525",fontcolor="#861109",color="#861109",arrowtail="dot",arrowhead="none",dir="both",style="dashed"];
+   node2->node4 [fontsize="14",penwidth="1.75",arrowsize="0.525",label="[N²]",weight="0",fontcolor="#861109",color="#861109",arrowtail="dot",arrowhead="none",dir="both",style="dashed"];
+   node5->node2 [fontsize="14",penwidth="1.75",arrowsize="0.525",color="darkgreen",fontcolor="darkgreen",arrowhead="dot",arrowtail="none",dir="both"];
+   }
