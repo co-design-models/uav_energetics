@@ -13,7 +13,7 @@ from mcdp_ipython_utils.plotting import (
     set_axis_colors,
 )
 from mcdp_lang import parse_poset
-from mcdp_library import get_test_librarian
+from mcdp_library import get_tst_librarian
 from mcdp_posets.uppersets import Us
 from mcdp_report.drawing import plot_upset_R2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3
@@ -22,7 +22,7 @@ from reprep import Report
 
 
 def go_plane1():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_plane1")
 
@@ -56,7 +56,7 @@ def go_plane2():
     #         "extra_payload": (np.linspace(1, 1000, 10), "g"),
     #     }
     #
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_plane2")
 

@@ -7,7 +7,7 @@ from common_stats import CommonStats
 from discrete_choices import figure_discrete_choices2
 from mcdp_ipython_utils.loading import solve_combinations
 from mcdp_ipython_utils.plotting import color_functions, color_resources, set_axis_colors
-from mcdp_library import get_test_librarian
+from mcdp_library import get_tst_librarian
 from plot_commons import figure_num_implementations2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3, plot_field
 from quickapp.quick_app import QuickApp
@@ -31,7 +31,7 @@ def get_combinations_drone():
 
 
 def go_drone1_mass_cost():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1")
 
@@ -44,7 +44,7 @@ def go_drone1_mass_cost():
 
 
 def go_drone1_mass():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_min_mass")
 
@@ -57,7 +57,7 @@ def go_drone1_mass():
 
 
 def go_drone1_cost():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_min_cost")
 
@@ -81,7 +81,7 @@ def get_combinations():
 
 
 def go_batteries_min_joint():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
@@ -96,7 +96,7 @@ def go_batteries_min_joint():
 
 
 def go_batteries_min_tco():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
@@ -111,7 +111,7 @@ def go_batteries_min_tco():
 
 
 def go_batteries_min_maintenance():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
@@ -126,7 +126,7 @@ def go_batteries_min_maintenance():
 
 
 def go_batteries_min_cost():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
@@ -141,7 +141,7 @@ def go_batteries_min_cost():
 
 
 def go_batteries_min_cost_mass():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
@@ -156,7 +156,7 @@ def go_batteries_min_cost_mass():
 
 
 def go_batteries_min_mass():
-    librarian = get_test_librarian()
+    librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
 
