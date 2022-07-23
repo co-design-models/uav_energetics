@@ -14,8 +14,8 @@ from mcdp_ipython_utils.plotting import (
 )
 from mcdp_lang import parse_poset
 from mcdp_library import get_tst_librarian
-from mcdp_posets.uppersets import Us
-from mcdp_report.drawing import plot_upset_R2
+from mcdp_posets import Us
+from mcdp_report import plot_upset_R2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3
 from quickapp import QuickApp
 from reprep import Report
