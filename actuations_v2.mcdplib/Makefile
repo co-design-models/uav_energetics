@@ -1,12 +1,13 @@
+outd=out-Makefile
 
 # all: plot
 all:
 	./generate_actuations.py
-	mcdp-plot --out=out -d . actuation
+	mcdp-plot --out $(outd) -d . actuation
 	./plot_actuation.py
 
 clean:
-	rm -rf out out-memo_disk _cached
+	rm -rf $(outd) out-memo_disk _cached
 
 realclean:
 	rm -rf actuation*.mcdp

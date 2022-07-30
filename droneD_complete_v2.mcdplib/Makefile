@@ -1,7 +1,9 @@
+outd=out-Makefile
+
 all:
 
-	mcdp-plot --out=out -D .. -d . DroneComplete
-	mcdp-plot --out=out -D .. -d . CustomerPlusEngineering 
+	mcdp-plot --out $(outd) -D .. -d . DroneComplete
+	mcdp-plot --out $(outd) -D .. -d . CustomerPlusEngineering
 
 clean:
-	rm -rf out _cached out-memo_disk
+	rm -rf $(outd) _cached out-memo_disk
