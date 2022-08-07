@@ -7,7 +7,7 @@ from common_stats import CommonStats
 from discrete_choices import figure_discrete_choices2
 from mcdp_ipython_utils.loading import solve_combinations
 from mcdp_ipython_utils.plotting import color_functions, color_resources, set_axis_colors
-from mcdp_library import get_tst_librarian
+from mcdp_library_tests import get_tst_librarian
 from plot_commons import figure_num_implementations2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3, plot_field
 from quickapp.quick_app import QuickApp

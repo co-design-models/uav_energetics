@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
+from typing import cast
 
 import numpy as np
 
-from mcdp_ipython_utils.loading import solve_queries
-from mcdp_ipython_utils.plotting import plot_all_directions
+from mcdp_ipython_utils import plot_all_directions, solve_queries
 from mcdp_library import MCDPLibrary
 from reprep import Report
+from zuper_commons.fs import FilePath
+from zuper_commons.text import ThingName
 
 
 def go():
-    fn = "out/actuation_c1.html"
+    fn = cast(FilePath, "out/actuation_c1.html")
 
-    model_name = "actuation"
+    model_name = ThingName("actuation")
     queries = []
 
     def add(q):

@@ -4,7 +4,7 @@
 import numpy as np
 
 from common_stats import CommonStats
-from mcdp_ipython_utils.loading import solve_queries
+from mcdp_ipython_utils.loading import solve_queries, SolveQueriesResult
 from mcdp_ipython_utils.plotting import (
     color_functions,
     color_resources,
@@ -13,18 +13,19 @@ from mcdp_ipython_utils.plotting import (
     set_axis_colors,
 )
 from mcdp_lang import parse_poset
-from mcdp_library import get_tst_librarian
+from mcdp_library_tests import get_tst_librarian
 from mcdp_posets import Us
 from mcdp_report import plot_upset_R2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3
 from quickapp import QuickApp
 from reprep import Report
+from zuper_commons.text import LibraryName, ThingName
 
 
-def go_plane1():
+def go_plane1() -> SolveQueriesResult:
     librarian = get_tst_librarian()
-    lib = librarian.load_library("mcdp_theory")
-    ndp = lib.load_ndp("drone1_plane1")
+    lib = librarian.load_library(LibraryName("mcdp_theory"))
+    ndp = lib.load_ndp(ThingName("drone1_plane1"))
 
     n = 10
 
@@ -50,15 +51,15 @@ def go_plane1():
     return data
 
 
-def go_plane2():
+def go_plane2() -> SolveQueriesResult:
     #     combinations = {
     #         "endurance": (np.linspace(5, 120, 10), "minutes"),
     #         "extra_payload": (np.linspace(1, 1000, 10), "g"),
     #     }
     #
     librarian = get_tst_librarian()
-    lib = librarian.load_library("mcdp_theory")
-    ndp = lib.load_ndp("drone1_plane2")
+    lib = librarian.load_library(LibraryName("mcdp_theory"))
+    ndp = lib.load_ndp(ThingName("drone1_plane2"))
 
     n = 10
 

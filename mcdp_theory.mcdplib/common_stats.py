@@ -1,4 +1,4 @@
-from typing import List
+from typing import Sequence
 
 import numpy as np
 
@@ -58,7 +58,7 @@ class CommonStats:
             res.append(v)
         return np.array(res)
 
-    def iterate(self, fnames: List[str], rnames: List[str]):
+    def iterate(self, fnames: Sequence[str], rnames: Sequence[str]) -> tuple[list[object], list[object]]:
         fs = []
         rs = []
 
@@ -75,7 +75,6 @@ class CommonStats:
             rs.append(map(extract_res, query_results))
 
         return fs, rs
-
 
 #     @contract(rnames='seq(str)',
 #               fnames='seq(str)')
