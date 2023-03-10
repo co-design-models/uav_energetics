@@ -4,7 +4,7 @@
 import numpy as np
 
 from common_stats import CommonStats
-from mcdp_ipython_utils.loading import solve_queries, SolveQueriesResult
+from mcdp_ipython_utils import solve_queries, SolveQueriesResult, SolveQuery
 from mcdp_ipython_utils.plotting import (
     color_functions,
     color_resources,
@@ -14,7 +14,7 @@ from mcdp_ipython_utils.plotting import (
 )
 from mcdp_lang import parse_poset
 from mcdp_library_tests import get_tst_librarian
-from mcdp_posets import Us
+from mcdp_posets import UpperSet
 from mcdp_report import plot_upset_R2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3
 from quickapp import QuickApp
@@ -40,11 +40,11 @@ def go_plane1() -> SolveQueriesResult:
         return (x, "[]")
 
     queries = []
-    for i in range(n):
+    for j in range(n):
         q = {}
-        q["endurance"] = interpolate_endurance(i)
-        q["num_missions"] = interpolate_missions(i)
-        queries.append(q)
+        q["endurance"] = interpolate_endurance(j)
+        q["num_missions"] = interpolate_missions(j)
+        queries.append(SolveQuery(q))
 
     result_like = dict(total_mass="kg", total_cost="USD")
     data = solve_queries(ndp, queries, result_like, lower=None, upper=None)
@@ -74,11 +74,11 @@ def go_plane2() -> SolveQueriesResult:
         return (x, "g")
 
     queries = []
-    for i in range(n):
+    for j in range(n):
         q = {}
-        q["endurance"] = interpolate_endurance(i)
-        q["extra_payload"] = interpolate_extra_payload(i)
-        queries.append(q)
+        q["endurance"] = interpolate_endurance(j)
+        q["extra_payload"] = interpolate_extra_payload(j)
+        queries.append(SolveQuery(q))
 
     result_like = dict(total_mass="kg", total_cost="USD")
     data = solve_queries(ndp, queries, result_like, lower=None, upper=None)
@@ -147,7 +147,7 @@ def report_plane2(data):
         ieee_spines_zoom3(pylab)
 
         for i, resources in enumerate(rs):
-            v = Us(P, resources)
+            v = UpperSet.from_collection(resources)
             color = colors[i]
             plot_upset_R2(
                 pylab,
@@ -171,7 +171,7 @@ def report_plane2(data):
         ieee_spines_zoom3(pylab)
 
         for i, resources in enumerate(rs_subset):
-            v = Us(P, resources)
+            v = UpperSet.from_collection(resources)
             color = colors[i]
             plot_upset_R2(
                 pylab,
@@ -251,7 +251,7 @@ def report_plane1(data):
         ieee_spines_zoom3(pylab)
 
         for i, resources in enumerate(rs):
-            v = Us(P, resources)
+            v = UpperSet.from_collection(resources)
             color = colors[i]
             plot_upset_R2(
                 pylab,
@@ -274,7 +274,7 @@ def report_plane1(data):
         ieee_spines_zoom3(pylab)
 
         for i, resources in enumerate(rs_subset):
-            v = Us(P, resources)
+            v = UpperSet.from_collection(resources)
             color = colors[i]
             plot_upset_R2(
                 pylab,

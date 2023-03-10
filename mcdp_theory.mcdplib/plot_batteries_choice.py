@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 
-import numpy as np
-
 from common_stats import CommonStats
 from discrete_choices import figure_discrete_choices2
+from mcdp_ipython_utils import SolveQueriesResult, SolveQueryMultiple
 from mcdp_ipython_utils.loading import solve_combinations
 from mcdp_ipython_utils.plotting import color_functions, color_resources, set_axis_colors
 from mcdp_library_tests import get_tst_librarian
+from mcdp_posets_algebra import frac_linspace
 from plot_commons import figure_num_implementations2
 from plot_utils import ieee_fonts_zoom3, ieee_spines_zoom3, plot_field
 from quickapp.quick_app import QuickApp
@@ -16,21 +16,21 @@ from reprep import Report
 colormap = "YlOrRd"
 
 
-def get_combinations_drone():
+def get_combinations_drone() -> SolveQueryMultiple:
     z = 2
     nt = 15 * z
     nr = 15 * z
     combinations = {
-        "endurance": (np.linspace(1, 120, nt), "min"),
-        "num_missions": (np.linspace(1, 2000, nr), "[]"),
-        "extra_payload": (100.0, "g"),
-        "extra_power": (1.0, "W"),
-        "velocity": (1.0, "m/s"),
+        "endurance": (frac_linspace(1, 120, nt), "min"),
+        "num_missions": (frac_linspace(1, 2000, nr), "[]"),
+        "extra_payload": (100, "g"),
+        "extra_power": (1, "W"),
+        "velocity": (1, "m/s"),
     }
-    return combinations
+    return SolveQueryMultiple(combinations)
 
 
-def go_drone1_mass_cost():
+def go_drone1_mass_cost() -> SolveQueriesResult:
     librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1")
@@ -43,7 +43,7 @@ def go_drone1_mass_cost():
     return data
 
 
-def go_drone1_mass():
+def go_drone1_mass() -> SolveQueriesResult:
     librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_min_mass")
@@ -56,7 +56,7 @@ def go_drone1_mass():
     return data
 
 
-def go_drone1_cost():
+def go_drone1_cost() -> SolveQueriesResult:
     librarian = get_tst_librarian()
     lib = librarian.load_library("mcdp_theory")
     ndp = lib.load_ndp("drone1_min_cost")
@@ -69,18 +69,18 @@ def go_drone1_cost():
     return data
 
 
-def get_combinations():
+def get_combinations() -> SolveQueryMultiple:
     z = 2
     nt = 15 * z
     nr = 15 * z
     combinations = {
-        "capacity": (np.linspace(1, 1000, nt), "Wh"),
-        "missions": (np.linspace(1, 2000, nr), "[]"),
+        "capacity": (frac_linspace(1, 1000, nt), "Wh"),
+        "missions": (frac_linspace(1, 2000, nr), "[]"),
     }
-    return combinations
+    return SolveQueryMultiple(combinations)
 
 
-def go_batteries_min_joint():
+def go_batteries_min_joint() -> SolveQueriesResult:
     librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
@@ -95,7 +95,7 @@ def go_batteries_min_joint():
     return data
 
 
-def go_batteries_min_tco():
+def go_batteries_min_tco() -> SolveQueriesResult:
     librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
@@ -110,7 +110,7 @@ def go_batteries_min_tco():
     return data
 
 
-def go_batteries_min_maintenance():
+def go_batteries_min_maintenance() -> SolveQueriesResult:
     librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
@@ -125,7 +125,7 @@ def go_batteries_min_maintenance():
     return data
 
 
-def go_batteries_min_cost():
+def go_batteries_min_cost() -> SolveQueriesResult:
     librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")
@@ -140,7 +140,7 @@ def go_batteries_min_cost():
     return data
 
 
-def go_batteries_min_cost_mass():
+def go_batteries_min_cost_mass() -> SolveQueriesResult:
     librarian = get_tst_librarian()
 
     lib = librarian.load_library("mcdp_theory")

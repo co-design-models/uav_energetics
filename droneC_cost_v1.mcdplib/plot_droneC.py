@@ -43,8 +43,8 @@ def go():
 
     plot_all_directions(
         r,
-        queries=data["queries"],
-        results=data["results"],
+        queries=data.queries,
+        results=data.results,
         what_to_plot_res=what_to_plot_res,
         what_to_plot_fun=what_to_plot_fun,
     )
