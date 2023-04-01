@@ -8,7 +8,7 @@ from mcdp_library import Librarian
 from reprep import Report
 
 
-def go():
+def go() -> None:
     model_name = "droneC"
     queries = []
 

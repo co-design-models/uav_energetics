@@ -10,7 +10,7 @@ from zuper_commons.fs import FilePath
 from zuper_commons.text import ThingName
 
 
-def go():
+def go() -> None:
     fn = cast(FilePath, "out/actuation_c1.html")
 
     model_name = ThingName("actuation")

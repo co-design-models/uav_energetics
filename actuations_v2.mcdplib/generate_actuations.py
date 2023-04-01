@@ -29,7 +29,7 @@ types = {
 }
 
 
-def go():
+def go() -> None:
     good = []
     discarded = []
     for name, v in types.items():

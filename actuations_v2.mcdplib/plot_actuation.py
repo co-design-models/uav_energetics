@@ -8,7 +8,7 @@ from mcdp_library import MCDPLibrary
 from reprep import Report
 
 
-def go():
+def go() -> None:
     queries = []
 
     def add(q):
