@@ -1,3 +1,5 @@
+from shelf "github.com/co-design-models/mcdp_uncertainty" import library droneD_complete_templates
+
 flatten specialize [
   Battery: `Battery_LCO, 
   Actuation: `droneD_complete_v2.Actuation, 
