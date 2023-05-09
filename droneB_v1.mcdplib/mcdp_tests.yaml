@@ -1,3 +1,4 @@
+---
 # model_name: batteryA
 #     query_strings: ["0 J"]
 #     max_steps: null # None
@@ -29,12 +30,10 @@ test_solve:
   #   model_name: batteryA
   #   query_strings: ["1 MJ"]
   #   expect_res: " <upperclosure {0.55555 kg}, upperclosure  {0.55557 kg}>"
-  
   # t2: 
   #   model_name: batteryA
   #   query_strings: ["0 J"]
   #   expect_res: " upperclosure {0 kg}"
-  
   # t2:
   #   model: droneA
   #   query: "<0 s, 0 g, 0 W>"

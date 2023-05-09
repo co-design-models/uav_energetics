@@ -1,16 +1,16 @@
-import itertools
-
 import numpy as np
 
+from mcdp import logger
+from mcdp_report import griddata
 from reprep.plot_utils.spines import set_spines_look_A
 
 
 def plot_field(pylab, x, y, z, cmap, zoom=1, vmin=None, vmax=None):
-    def value_at(cx, cy):
-        for x0, y0, z0 in itertools.product(x, y, z):
-            if cx == x0 and cy == y0:
-                return z0
-        raise ValueError((cx, cy))
+    # def value_at(cx, cy):
+    #     for x0, y0, z0 in itertools.product(x, y, z):
+    #         if cx == x0 and cy == y0:
+    #             return z0
+    #     raise ZValueError((cx, cy))
 
     xu = np.sort(np.unique(x))
     yu = np.sort(np.unique(y))
@@ -20,10 +20,15 @@ def plot_field(pylab, x, y, z, cmap, zoom=1, vmin=None, vmax=None):
 
     X, Y = np.meshgrid(xu, yu)
 
-    from matplotlib.mlab import griddata
-
-    resampled = griddata(x, y, z, xu, yu, interp="linear")
-
+    resampled = griddata(x, y, z, xu, yu)
+    logger.info(
+        x_shape=x.shape,
+        y_shape=y.shape,
+        z_shape=z.shape,
+        xu_shape=xu.shape,
+        yu_shape=yu.shape,
+        resampled_shape=resampled.shape,
+    )
     pylab.pcolor(X, Y, resampled, vmin=vmin, vmax=vmax, cmap=cmap)
 
 

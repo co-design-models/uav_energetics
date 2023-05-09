@@ -1,14 +1,21 @@
 outd=out-Makefile
 
-all:
-	DISABLE_CONTRACTS=1 ./plot_batteries_choice.py  -c rparmake
-	DISABLE_CONTRACTS=1 ./plot_drone.py  -c rparmake
+
+all: plot-battery-choice plot-drone
 
 	# will fail
-	# $(MAKE) pics
+	$(MAKE) pics
+plot-battery-choice:  
+	env -u MCDP_TEST_LIBRARIES_EXCLUDE ./plot_batteries_choice.py  -c make
+
+plot-drone:  
+	env -u MCDP_TEST_LIBRARIES_EXCLUDE ./plot_drone.py  -c rparmake
+
+
 
 clean:
-	rm -rf $(outd) out-* _cached
+	rm -rf $(outd) _cached out-*
+
 
 
 pics: pics1 pics2 pics3

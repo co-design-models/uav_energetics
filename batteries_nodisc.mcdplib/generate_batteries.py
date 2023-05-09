@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import string
 
 template = """
@@ -68,7 +67,7 @@ types = {
 }
 
 
-def go():
+def go() -> None:
     summary = ""
 
     good = []

@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Any, Sequence
 
 import numpy as np
 
@@ -12,7 +12,7 @@ class CommonStats:
         all_num_implementations = []
 
         for query, query_results, implementations in zip(
-            data["queries"], data["results"], data["implementations"]
+            data["queries"], data.results, data["implementations"]
         ):
             num_solutions = len(query_results)
 
@@ -36,7 +36,7 @@ class CommonStats:
         res = []
         data = self.data
         for query, query_results, implementations in zip(
-            data["queries"], data["results"], data["implementations"]
+            data["queries"], data.results, data["implementations"]
         ):
             v = query[fname]
             res.append(v)
@@ -47,7 +47,7 @@ class CommonStats:
         data = self.data
         res = []
         for query, query_results, implementations in zip(
-            data["queries"], data["results"], data["implementations"]
+            data["queries"], data.results, data["implementations"]
         ):
             num_solutions = len(query_results)
 
@@ -58,7 +58,9 @@ class CommonStats:
             res.append(v)
         return np.array(res)
 
-    def iterate(self, fnames: Sequence[str], rnames: Sequence[str]) -> tuple[list[object], list[object]]:
+    def iterate(
+        self, fnames: Sequence[str], rnames: Sequence[str]
+    ) -> tuple[list[Any], list[Any]]:  # XXX: finish typing
         fs = []
         rs = []
 
@@ -70,11 +72,12 @@ class CommonStats:
         def extract_res(query_result):
             return tuple([query_result[rname] for rname in rnames])
 
-        for query, query_results in zip(data["queries"], data["results"]):
+        for query, query_results in zip(data["queries"], data.results):
             fs.append(extract_fun(query))
-            rs.append(map(extract_res, query_results))
+            rs.append(list(map(extract_res, query_results)))
 
         return fs, rs
+
 
 #     @contract(rnames='seq(str)',
 #               fnames='seq(str)')
@@ -84,7 +87,7 @@ class CommonStats:
 #         indices = range(len(fs))
 #         order = sorted(indices, key)
 #         assert len(fnames) == 2
-#         P = PosetProduct((Rcomp(),) * 2)
+#         P = PosetProduct0((Rcomp(),) * 2)
 #
 #         order = np.argsort(fs, key=P.leq)
 #

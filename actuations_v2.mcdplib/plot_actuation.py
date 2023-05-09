@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
+from typing import List
 
-import numpy as np
-
-from mcdp_ipython_utils.loading import solve_queries
-from mcdp_ipython_utils.plotting import plot_all_directions
+from mcdp_ipython_utils import NAME2UNIT, plot_all_directions, solve_queries, SolveQueriesResult, SolveQuery
 from mcdp_library import MCDPLibrary
+from mcdp_posets_algebra import frac_linspace
 from reprep import Report
+from zuper_commons.fs import FilePath
+from zuper_commons.text import ThingName
 
 
 def go() -> None:
-    queries = []
-
-    def add(q):
-        queries.append(q)
+    queries: List[SolveQuery] = []
 
     n = 10
-    lifts = np.linspace(0, 10.0, n)
+    lifts = frac_linspace(0, 10, n)
 
     for (lift,) in zip(lifts):
         q = {"lift": (lift, "N")}
-        add(q)
+        queries.append(SolveQuery(q))
 
     result_like = dict(power="W", cost="$")
 
@@ -32,12 +30,19 @@ def go() -> None:
         go_(model_name, queries, result_like, what_to_plot_res, what_to_plot_fun, fn)
 
 
-def go_(model_name, queries, result_like, what_to_plot_res, what_to_plot_fun, fn):
+def go_(
+    model_name: str,
+    queries: list[SolveQuery],
+    result_like: NAME2UNIT,
+    what_to_plot_res: NAME2UNIT,
+    what_to_plot_fun: NAME2UNIT,
+    fn: FilePath,
+):
     lib = MCDPLibrary()
     lib.add_search_dir(".")
-    ndp = lib.load_ndp(model_name)
+    si, ndp = lib.load_ndp(ThingName(model_name)).split()
 
-    data = solve_queries(ndp, queries, result_like)
+    data: SolveQueriesResult = solve_queries(ndp, queries, result_like)
 
     r = Report()
 

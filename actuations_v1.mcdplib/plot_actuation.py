@@ -1,28 +1,25 @@
 #!/usr/bin/env python3
-from typing import cast
+from typing import cast, Mapping
 
-import numpy as np
-
-from mcdp_ipython_utils import plot_all_directions, solve_queries
+from mcdp_ipython_utils import plot_all_directions, solve_queries, SolveQuery, VALUE_UNIT
 from mcdp_library import MCDPLibrary
+from mcdp_posets_algebra import frac_linspace
 from reprep import Report
-from zuper_commons.fs import FilePath
 from zuper_commons.text import ThingName
 
 
 def go() -> None:
-    fn = cast(FilePath, "out/actuation_c1.html")
+    fn = "out/actuation_c1.html"
 
-    model_name = ThingName("actuation")
-    queries = []
+    model_name = cast(ThingName, "actuation")
+    queries: list[SolveQuery] = []
 
-    def add(q):
-        queries.append(q)
+    def add(q_: Mapping[str, VALUE_UNIT]) -> None:
+        queries.append(SolveQuery(q_))
 
     n = 10
-    lifts = np.linspace(0, 10.0, n)
 
-    for (lift,) in zip(lifts):
+    for lift in frac_linspace(0, 10, n):
         q = {"lift": (lift, "N")}
         add(q)
 
@@ -34,7 +31,7 @@ def go() -> None:
 
     lib = MCDPLibrary()
     lib.add_search_dir(".")
-    ndp = lib.load_ndp(model_name)
+    si, ndp = lib.load_ndp(model_name).split()
 
     data = solve_queries(ndp, queries, result_like)
 

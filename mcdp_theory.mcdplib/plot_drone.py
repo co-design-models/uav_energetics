@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-
+from typing import cast
 
 import numpy as np
 
 from common_stats import CommonStats
-from mcdp_ipython_utils import solve_queries, SolveQueriesResult, SolveQuery
-from mcdp_ipython_utils.plotting import (
+from mcdp_ipython_utils import (
     color_functions,
     color_resources,
     generate_colors,
     plot_all_directions,
     set_axis_colors,
+    solve_queries,
+    SolveQuery,
+    VALUE_UNIT,
 )
-from mcdp_lang import parse_poset
 from mcdp_library_tests import get_tst_librarian
 from mcdp_posets import UpperSet
 from mcdp_report import plot_upset_R2
@@ -22,22 +23,22 @@ from reprep import Report
 from zuper_commons.text import LibraryName, ThingName
 
 
-def go_plane1() -> SolveQueriesResult:
+def go_plane1():
     librarian = get_tst_librarian()
-    lib = librarian.load_library(LibraryName("mcdp_theory"))
-    ndp = lib.load_ndp(ThingName("drone1_plane1"))
+    lib = librarian.load_library(cast(LibraryName, "mcdp_theory"))
+    si, ndp = lib.load_ndp(ThingName("drone1_plane1")).split()
 
     n = 10
 
-    def interpolate_endurance(i):
+    def interpolate_endurance(i) -> VALUE_UNIT:
         assert 0 <= i < n
         x = np.linspace(5, 120, n)[i]
-        return (x, "minutes")
+        return x, "minutes"
 
-    def interpolate_missions(i):
+    def interpolate_missions(i) -> VALUE_UNIT:
         assert 0 <= i < n
         x = np.linspace(1, 1000, n)[i]
-        return (x, "[]")
+        return x, "[]"
 
     queries = []
     for j in range(n):
@@ -51,27 +52,27 @@ def go_plane1() -> SolveQueriesResult:
     return data
 
 
-def go_plane2() -> SolveQueriesResult:
+def go_plane2():
     #     combinations = {
     #         "endurance": (np.linspace(5, 120, 10), "minutes"),
     #         "extra_payload": (np.linspace(1, 1000, 10), "g"),
     #     }
     #
     librarian = get_tst_librarian()
-    lib = librarian.load_library(LibraryName("mcdp_theory"))
-    ndp = lib.load_ndp(ThingName("drone1_plane2"))
+    lib = librarian.load_library(cast(LibraryName, "mcdp_theory"))
+    si, ndp = lib.load_ndp(ThingName("drone1_plane2")).split()
 
     n = 10
 
-    def interpolate_endurance(i):
-        assert 0 <= i < n
-        x = np.linspace(5, 60, n)[i]
-        return (x, "minutes")
+    def interpolate_endurance(i_: int):
+        assert 0 <= i_ < n
+        x = np.linspace(5, 60, n)[i_]
+        return x, "minutes"
 
-    def interpolate_extra_payload(i):
-        assert 0 <= i < n
-        x = np.linspace(1, 500, n)[i]
-        return (x, "g")
+    def interpolate_extra_payload(i_: int):
+        assert 0 <= i_ < n
+        x = np.linspace(1, 500, n)[i_]
+        return x, "g"
 
     queries = []
     for j in range(n):
@@ -85,7 +86,7 @@ def go_plane2() -> SolveQueriesResult:
     return data
 
 
-def matplotlib_settings():
+def matplotlib_settings() -> None:
     from matplotlib import pylab
 
     ieee_fonts_zoom3(pylab)
@@ -101,8 +102,8 @@ def report_plane2(data):
 
     plot_all_directions(
         r,
-        queries=data["queries"],
-        results=data["results"],
+        queries=data.queries,
+        results=data.results,
         what_to_plot_res=what_to_plot_res,
         what_to_plot_fun=what_to_plot_fun,
     )
@@ -138,10 +139,10 @@ def report_plane2(data):
 
     params0 = dict(color_shadow=[1.0, 0.8, 0.8], markers="k.", markers_params={})
 
-    color_shadow = params0["color_shadow"]
+    # color_shadow = params0["color_shadow"]
     markers = params0["markers"]
 
-    P = parse_poset("dimensionless x dimensionless")
+    # P = parse_poset("dimensionless x dimensionless")
 
     with f.plot("resources2", **fig2) as pylab:
         ieee_spines_zoom3(pylab)
@@ -191,7 +192,7 @@ def report_plane2(data):
     return r
 
 
-def get_colors(n):
+def get_colors(n: int):
     colors = generate_colors(n + 1, colormap_name="Paired")
     del colors[5]
     return colors
@@ -199,10 +200,9 @@ def get_colors(n):
 
 def report_plane1(data):
     matplotlib_settings()
-    r = Report()
-    result_like = dict(total_mass="kg", total_cost="USD")
-    what_to_plot_res = result_like
-    what_to_plot_fun = dict(endurance="Wh", num_missions="[]")
+    # result_like = dict(total_mass="kg", total_cost="USD")
+    # what_to_plot_res = result_like
+    # what_to_plot_fun = dict(endurance="Wh", num_missions="[]")
     #
     #     plot_all_directions(r, queries=data['queries'], results=data['results'],
     #                         what_to_plot_res=what_to_plot_res,
@@ -242,10 +242,10 @@ def report_plane1(data):
 
     params0 = dict(color_shadow=[1.0, 0.8, 0.8], markers="k.", markers_params={})
 
-    color_shadow = params0["color_shadow"]
+    # color_shadow = params0["color_shadow"]
     markers = params0["markers"]
 
-    P = parse_poset("dimensionless x dimensionless")
+    # P = parse_poset("dimensionless x dimensionless")
 
     with f.plot("resources2", **fig2) as pylab:
         ieee_spines_zoom3(pylab)

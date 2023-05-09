@@ -1,5 +1,5 @@
 from common_stats import CommonStats
-from mcdp_ipython_utils.plotting import color_functions, color_resources, set_axis_colors
+from mcdp_ipython_utils import color_functions, color_resources, set_axis_colors
 from plot_utils import ieee_spines_zoom3, plot_field
 
 fig = dict(figsize=(4.5, 4))

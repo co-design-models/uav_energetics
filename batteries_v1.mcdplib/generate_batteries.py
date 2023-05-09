@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import string
 
 template = """
@@ -72,7 +71,7 @@ types = {
 }
 
 
-def go():
+def go() -> None:
     summary = ""
 
     good = []
@@ -118,21 +117,3 @@ choose(
 
 if __name__ == "__main__":
     go()
-
-# class BatteryRandom(PrimitiveDP):
-
-#     def __init__(self, seed):
-
-#         F = R_Energy_J
-#         R = R_Weight_g
-
-#         M = SpaceProduct(())
-#         PrimitiveDP.__init__(self, F=F, R=R, M=M)
-
-#     def solve(self, func):
-#         if func == self.F.get_top():
-#             r = self.R.get_top()
-#         else:
-#             r = Pa_from_weight(func)
-
-#         return self.R.U(r)

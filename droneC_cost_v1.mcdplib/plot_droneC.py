@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
+from decimal import Decimal
+from typing import cast
 
 import numpy as np
 
-from mcdp_ipython_utils.loading import solve_queries
-from mcdp_ipython_utils.plotting import plot_all_directions
+from mcdp_ipython_utils import plot_all_directions, solve_queries, SolveQuery
 from mcdp_library import Librarian
+from mcdp_posets import RLike
 from reprep import Report
+from zuper_commons import ZLogger
+from zuper_commons.text import LibraryName, ThingName
+
+logger = ZLogger(__name__)
 
 
 def go() -> None:
-    model_name = "droneC"
-    queries = []
+    model_name = cast(ThingName, "droneC")
+    queries: list[SolveQuery] = []
 
-    def add(q):
-        queries.append(q)
+    def add(q_: dict[str, tuple[RLike, str]]) -> None:
+        queries.append(SolveQuery(q_))
 
     n = 10
     endurance = np.linspace(1, 20, n)
@@ -21,10 +27,10 @@ def go() -> None:
 
     for endurance, payload in zip(endurance, payload):
         q = {
-            "num_missions": (1000, "[]"),
-            "extra_power": (5, "W"),
-            "extra_payload": (payload, "g"),
-            "endurance": (endurance, "minutes"),
+            "num_missions": (Decimal(1000), "[]"),
+            "extra_power": (Decimal(5), "W"),
+            "extra_payload": (Decimal.from_float(payload), "g"),
+            "endurance": (Decimal.from_float(endurance), "minutes"),
         }
         add(q)
 
@@ -34,8 +40,8 @@ def go() -> None:
 
     librarian = Librarian()
     librarian.find_libraries("..")
-    lib = librarian.load_library("droneC_cost_v1")
-    ndp = lib.load_ndp(model_name)
+    lib = librarian.load_library(cast(LibraryName, "droneC_cost_v1"))
+    si, ndp = lib.load_ndp(model_name).split()
 
     data = solve_queries(ndp, queries, result_like)
 
@@ -49,7 +55,7 @@ def go() -> None:
         what_to_plot_fun=what_to_plot_fun,
     )
     fn = "out/droneC_c1.html"
-    print("writing to %r" % fn)
+    logger.info("writing to %r" % fn)
     r.to_html(fn)
 
 

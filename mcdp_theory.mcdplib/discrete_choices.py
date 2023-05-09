@@ -1,22 +1,27 @@
+from typing import Any, Optional, TypeVar
+
 import numpy as np
 
-from mcdp_ipython_utils.plotting import color_functions, set_axis_colors
-from mcdp_posets import Coproduct1Labels, FiniteCollectionAsSpace, SpaceProduct
+from mcdp_ipython_utils import color_functions, set_axis_colors
+from mcdp_posets import AbstractPosetProduct, make_FinitePoset, Poset, PosetCoproduct
 from plot_utils import ieee_spines_zoom3, plot_field
+from zuper_commons.types import ZValueError
 
 fig = dict(figsize=(4.5, 4))
 
+X = TypeVar("X")
 
-def get_choice(I, imp):
+
+def get_choice(I: Poset[X], imp: X) -> Optional[tuple[str, Poset[Any]]]:
     # I.belongs(imp)
 
-    if isinstance(I, Coproduct1Labels):
+    if isinstance(I, PosetCoproduct):
         index, xi = I.unpack(imp)
         label = I.labels[index]
-        return label, FiniteCollectionAsSpace(I.labels, T=str)
+        return label, make_FinitePoset(I.labels, (), T=str)
 
-    if isinstance(I, SpaceProduct):
-        for S, s in zip(I.subs, imp):
+    if isinstance(I, AbstractPosetProduct):
+        for S, s in zip(I.components(), imp):
             res = get_choice(S, s)
             if res is not None:
                 return res
@@ -26,12 +31,10 @@ def get_choice(I, imp):
 
 def compute_discrete_choices(data):
     I = data["I"]
-    # print I.repr_long()
+    # print I.repr_compact()
 
     all_discrete_choices = []
-    for query, query_results, implementations in zip(
-        data["queries"], data["results"], data["implementations"]
-    ):
+    for query, query_results, implementations in zip(data["queries"], data.results, data["implementations"]):
 
         discrete_choices = set()
         for ms in implementations:
@@ -77,7 +80,7 @@ def figure_discrete_choices2(r, data, cs, fname1, fname2):
     for p in possible_this:
         if not p in possible:
             msg = "Did not anticipate %r as an option." % p
-            raise ValueError(msg)
+            raise ZValueError(msg)
 
     choice_as_int = np.zeros(dtype="int", shape=len(all_discrete_choices))
     for i, x in enumerate(all_discrete_choices):

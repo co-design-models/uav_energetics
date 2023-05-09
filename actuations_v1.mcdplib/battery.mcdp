@@ -2,11 +2,11 @@ mcdp {
     provides energy [J]
     α = 1 J/kg
     β = 1 CHF/kg
-  
+    
     requires weight [kg]
     requires cost [CHF]
-    weight1 = 10 g +  provided energy / α
+    weight1 = 10 g + provided energy / α
     required weight ≽ weight1
     
-    required cost ≽ 4 CHF + weight1  · β 
+    required cost ≽ 4 CHF + weight1 · β 
 }
