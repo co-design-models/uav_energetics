@@ -13,7 +13,7 @@ all:
 
 
 clean:
-	rm -rf out-memo_disk $(outd) _cached
+	rm -rf out-memo_disk $(outd)  out out-* _cached
 
 realclean:
 	rm -f bat_*.mcdp batteries.mcdp summary.txt
