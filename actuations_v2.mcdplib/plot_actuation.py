@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from typing import List
 
 from mcdp_ipython_utils import NAME2UNIT, plot_all_directions, solve_queries, SolveQueriesResult, SolveQuery
 from mcdp_library import MCDPLibrary
@@ -10,7 +9,7 @@ from zuper_commons.text import ThingName
 
 
 def go() -> None:
-    queries: List[SolveQuery] = []
+    queries: list[SolveQuery] = []
 
     n = 10
     lifts = frac_linspace(0, 10, n)
