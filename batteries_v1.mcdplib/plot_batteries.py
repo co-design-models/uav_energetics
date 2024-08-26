@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 
 from mcdp_ipython_utils import plot_all_directions, solve_combinations, SolveQueryMultiple
-from mcdp_library import MCDPLibrary
+from mcdp_library import get_librarian
 from mcdp_posets_algebra import frac_linspace
 from reprep import Report
 
-
-def get_library():
-    lib = MCDPLibrary()
-    lib.use_cache_dir("_cached/plot_batteries_cache")
-    lib.add_search_dir(".")
-    return lib
-
-
+ 
 def go(lib):
     combinations = SolveQueryMultiple(
         {"capacity": (frac_linspace(50, 3000, 10), "Wh"), "missions": (1000, "[]")}
@@ -62,7 +55,12 @@ def go2(lib):
     r.to_html("out/batteries_squash-c2.html")
 
 
-if __name__ == "__main__":
-    lib0 = get_library()
+def go0():
+    librarian = get_librarian(main_dir="../..")
+    lib0 = librarian.get_library_by_dir(".")
     go(lib0)
     go2(lib0)
+
+
+if __name__ == "__main__":
+    go0()

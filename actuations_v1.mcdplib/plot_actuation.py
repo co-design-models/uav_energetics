@@ -2,7 +2,7 @@
 from typing import cast, Mapping
 
 from mcdp_ipython_utils import plot_all_directions, solve_queries, SolveQuery, VALUE_UNIT
-from mcdp_library import MCDPLibrary
+from mcdp_library import get_librarian
 from mcdp_posets_algebra import frac_linspace
 from reprep import Report
 from zuper_commons.text import ThingName
@@ -29,8 +29,9 @@ def go() -> None:
 
     what_to_plot_fun = dict(lift="N")
 
-    lib = MCDPLibrary()
-    lib.add_search_dir(".")
+    librarian = get_librarian(main_dir="../..")
+    lib = librarian.get_library_by_dir(".")
+
     si, ndp = lib.load_ndp(model_name).split()
 
     data = solve_queries(ndp, queries, result_like)

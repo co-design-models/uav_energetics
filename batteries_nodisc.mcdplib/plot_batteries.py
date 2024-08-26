@@ -2,7 +2,7 @@
 from typing import cast
 
 from mcdp_ipython_utils import plot_all_directions, solve_combinations, SolveQueryMultiple
-from mcdp_library import MCDPLibrary
+from mcdp_library import get_librarian, MCDPLibrary
 from mcdp_posets_algebra import frac_linspace
 from reprep import Report
 from zuper_commons.text import ThingName
@@ -16,8 +16,9 @@ def go() -> None:
     what_to_plot_res = result_like
     what_to_plot_fun = dict(capacity="Wh", missions="[]")
 
-    lib = MCDPLibrary()
-    lib.add_search_dir(".")
+    librarian = get_librarian(main_dir="../..")
+    lib = librarian.get_library_by_dir(".")
+
     si, ndp = lib.load_ndp(cast(ThingName, "batteries")).split()
 
     data = solve_combinations(ndp, combinations, result_like)
@@ -43,8 +44,9 @@ def go2() -> None:
     what_to_plot_res = result_like
     what_to_plot_fun = dict(capacity="Wh", missions="[]")
 
-    lib = MCDPLibrary()
-    lib.add_search_dir(".")
+    librarian = get_librarian(main_dir="../..")
+    lib = librarian.get_library_by_dir(".")
+
     si, ndp = lib.load_ndp(model_name).split()
 
     data = solve_combinations(ndp, combinations, result_like)

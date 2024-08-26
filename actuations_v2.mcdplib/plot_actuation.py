@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from mcdp_ipython_utils import NAME2UNIT, plot_all_directions, solve_queries, SolveQueriesResult, SolveQuery
-from mcdp_library import MCDPLibrary
+from mcdp_library import get_librarian, MCDPLibrary
 from mcdp_posets_algebra import frac_linspace
 from reprep import Report
 from zuper_commons.fs import FilePath
@@ -37,8 +37,9 @@ def go_(
     what_to_plot_fun: NAME2UNIT,
     fn: FilePath,
 ):
-    lib = MCDPLibrary()
-    lib.add_search_dir(".")
+    librarian = get_librarian(main_dir="../..")
+    lib = librarian.get_library_by_dir(".")
+
     si, ndp = lib.load_ndp(ThingName(model_name)).split()
 
     data: SolveQueriesResult = solve_queries(ndp, queries, result_like)

@@ -5,7 +5,7 @@ from typing import cast
 import numpy as np
 
 from mcdp_ipython_utils import plot_all_directions, solve_queries, SolveQuery
-from mcdp_library import Librarian
+from mcdp_library import get_librarian, Librarian
 from mcdp_posets import RLike
 from reprep import Report
 from zuper_commons import ZLogger
@@ -38,8 +38,7 @@ def go() -> None:
     what_to_plot_res = result_like
     what_to_plot_fun = dict(extra_payload="g", endurance="minutes")
 
-    librarian = Librarian()
-    librarian.find_libraries("..")
+    librarian = get_librarian(main_dir='..')
     lib = librarian.load_library(cast(LibraryName, "droneC_cost_v1"))
     si, ndp = lib.load_ndp(model_name).split()
 
