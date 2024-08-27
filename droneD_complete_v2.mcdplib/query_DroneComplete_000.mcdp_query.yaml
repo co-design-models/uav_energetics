@@ -1,0 +1,10 @@
+title: Query query_DroneComplete_000
+description: ''
+model: '`DroneComplete'
+query:
+  query_type: FixFunMinRes
+  min_functionalities:
+    num_missions: '4'
+    carry_payload: 103 g
+  resources_limits: {}
+  optimize_for: []
