@@ -23,21 +23,23 @@ mcdp {
 
   computer = instance `Computer
 
-  perception = instance template mcdp {
+  perception = instance mcdp {
     provides velocity [m/s]
     requires computation [flops]
     requires camera_framerate [Hz]
     requires camera_resolution [pixels/deg]
     requires camera_fov [deg]
+    ignore unconnected
   }
   computation provided by computer >= computation required by perception
 
 
-  sensor = instance template mcdp {
+  sensor = instance  mcdp {
     provides framerate [Hz]
     provides resolution [pixels/deg]
     provides fov [deg]
     requires power [W]
+    ignore unconnected
   }
 
   resolution provided by sensor >= camera_resolution required by perception

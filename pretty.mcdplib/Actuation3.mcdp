@@ -1,5 +1,7 @@
-template mcdp {
-  provides lift [N]  
+mcdp {
+  provides lift [N]
   requires power [W]
-  requires cost [USD] 
+  requires cost [USD]
+
+  ignore unconnected
 }

@@ -1,6 +1,8 @@
-template mcdp {
+mcdp {
     provides framerate [Hz]
     provides resolution [pixels/deg]
     provides fov [deg]
     requires power [W]
+
+    ignore unconnected
 }
