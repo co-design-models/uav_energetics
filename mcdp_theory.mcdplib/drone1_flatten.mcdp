@@ -1,4 +1,4 @@
-from repo "github.com/co-design-models/mcdp_uncertainty" import library droneD_complete_templates
+from repo "github.com/co-design-models/mcdp_uncertainty@z7-stage" import library droneD_complete_templates
 
 flatten specialize [
   Battery: `Battery_LCO,
