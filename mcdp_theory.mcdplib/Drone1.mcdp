@@ -1,8 +1,8 @@
-from shelf "github.com/co-design-models/mcdp_uncertainty" import library droneD_complete_templates
+from repo "github.com/co-design-models/mcdp_uncertainty" import library droneD_complete_templates
 
 specialize [
   Battery: `Batteries,
-  Actuation: `droneD_complete_v2.Actuation, 
+  Actuation: `droneD_complete_v2.Actuation,
   PowerApprox: mcdp {
     provides power [W]
     requires power [W]
