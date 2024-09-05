@@ -1,4 +1,4 @@
-from shelf "github.com/co-design-models/mcdp_uncertainty" import library droneD_complete_templates
+from shelf "github.com/co-design-models/mcdp_uncertainty@z7-stage" import library droneD_complete_templates
 
 specialize [
   Battery: `Batteries,
@@ -9,4 +9,4 @@ specialize [
 
     required power  >= approx(provided power, 1 mW)
    }
-] `droneD_complete_templates.ActuationEnergeticsTemplate
+] `droneD_complete_templates.ActuationEnergeticsTemplate 
