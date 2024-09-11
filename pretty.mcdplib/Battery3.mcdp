@@ -6,4 +6,5 @@ mcdp {
   specific_energy = 100 Wh / kg 
 
   required mass >= provided capacity / specific_energy
+  required cost >= 100 USD
 }
