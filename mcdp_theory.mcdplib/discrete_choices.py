@@ -1,21 +1,19 @@
-from typing import Any, Optional, TypeVar
+from typing import Any
 
 import numpy as np
 
 from mcdp_ipython_utils import color_functions, set_axis_colors
-from mcdp_posets import AbstractPosetProduct, make_FinitePoset, Poset, PosetCoproduct
+from mcdp_posets import AbstractPosetProduct, make_FinitePoset, Poset, P_C_Product
 from plot_utils import ieee_spines_zoom3, plot_field
 from zuper_commons.types import ZValueError
 
 fig = dict(figsize=(4.5, 4))
 
-X = TypeVar("X")
 
-
-def get_choice(I: Poset[X], imp: X) -> Optional[tuple[str, Poset[Any]]]:
+def get_choice[X](I: Poset[X], imp: X) -> tuple[str, Poset[Any]] | None:
     # I.belongs(imp)
 
-    if isinstance(I, PosetCoproduct):
+    if isinstance(I, P_C_Product):
         index, xi = I.unpack(imp)
         label = I.labels[index]
         return label, make_FinitePoset(I.labels, (), T=str)
